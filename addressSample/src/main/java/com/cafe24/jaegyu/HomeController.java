@@ -102,6 +102,11 @@ public class HomeController {
 		return "address";
 	}
 	
+	@RequestMapping(value="/restgrid",method=RequestMethod.GET)
+	public String restGrid(){
+		return "restGrid";
+	}
+	
 	/*
 	 * JSON데이터를 VO로 변환시킨다.
 	 * */
