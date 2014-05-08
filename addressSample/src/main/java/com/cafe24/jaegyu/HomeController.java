@@ -107,6 +107,11 @@ public class HomeController {
 		return "restGrid";
 	}
 	
+	@RequestMapping(value="/extjs",method=RequestMethod.GET)
+	public String extjs(){
+		return "extjs";
+	}
+	
 	/*
 	 * JSON데이터를 VO로 변환시킨다.
 	 * */
