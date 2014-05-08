@@ -29,7 +29,7 @@ public class AddressTest {
 	AddressService addressService;
 	
 	@Test
-	public void testName() throws Exception {
+	public void testList() throws Exception {
 		List<AddressVO> list = dao.getAll();
 		System.out.println(list);
 	}
@@ -54,6 +54,41 @@ public class AddressTest {
 		c.add(addressVO);
 		
 		assertEquals(true, addressService.modifyAddressInfo(c));
+	}
+	
+	@Test
+	public void testInsert() throws Exception {
+		Collection<AddressVO> addressVOS = new ArrayList<AddressVO>();
+		
+		AddressVO addressVO = new AddressVO();
+		addressVO.setName("김형동");
+		addressVO.setAddress("서울특별시 강남구 논현동 한주빌딩 5층");
+		addressVO.setTel("02-3445-2198");
+		
+		AddressVO addressVO2 = new AddressVO();
+		addressVO2.setName("천은혜");
+		addressVO2.setAddress("서울특별시 강남구 논현동 한주빌딩 5층");
+		addressVO2.setTel("02-3445-2198");
+		
+		addressVOS.add(addressVO);
+		addressVOS.add(addressVO2);
+		
+		addressService.insertAddressInfo(addressVOS);
+		
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		Collection<AddressVO> addressVOS = new ArrayList<AddressVO>();
+		AddressVO addressVO = new AddressVO();
+		addressVO.setId(11);
+		addressVOS.add(addressVO);
+		
+		AddressVO addressVO2 = new AddressVO();
+		addressVO2.setId(12);
+		addressVOS.add(addressVO2);
+		
+		addressService.deleteAddress(addressVOS);
 	}
 	
 }

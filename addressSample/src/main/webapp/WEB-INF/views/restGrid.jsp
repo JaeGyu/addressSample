@@ -9,6 +9,15 @@
 	href='http://cdn.sencha.io/ext/gpl/4.2.1/resources/css/ext-all.css'
 	rel='stylesheet' />
 <script src='http://cdn.sencha.io/ext/gpl/4.2.1/ext-all.js'></script>
+<style type="text/css">
+.icon-add{
+  background-image: url("add.png");
+}
+
+.icon-delete{
+	background-image:url("delete.png");
+}
+</style>
 <script>
 Ext.require(['Ext.data.*', 'Ext.grid.*']);
 
@@ -58,7 +67,6 @@ Ext.onReady(function(){
                     name = Ext.String.capitalize(operation.action),
                     verb;
                     
-                    
                 if (name == 'Destroy') {
                     record = operation.records[0];
                     verb = 'Destroyed';
@@ -85,14 +93,14 @@ Ext.onReady(function(){
     var grid = Ext.create('Ext.grid.Panel', {
         renderTo: document.body,
         plugins: [rowEditing],
-        width: 400,
+        width: 800,
         height: 300,
         frame: true,
-        title: 'Addresses',
+        title: '주소록',
         store: store,
         iconCls: 'icon-user',
         columns: [{
-            text: 'Name',
+            text: '성명',
             flex: 1,
             sortable: true,
             dataIndex: 'name',
@@ -100,16 +108,18 @@ Ext.onReady(function(){
                 xtype: 'textfield'
             }
         }, {
-            header: 'Address',
-            width: 80,
+            header: '주소',
+            //width: 80,
+            flex: 5,
             sortable: true,
             dataIndex: 'address',
             field: {
                 xtype: 'textfield'
             }
         }, {
-            text: 'Tel',
-            width: 80,
+            text: '전화번호',
+            //width: 80,
+            flex: 5,
             sortable: true,
             dataIndex: 'tel',
             field: {
@@ -119,17 +129,17 @@ Ext.onReady(function(){
         dockedItems: [{
             xtype: 'toolbar',
             items: [{
-                text: 'Add',
+                text: '추가',
                 iconCls: 'icon-add',
                 handler: function(){
                     // empty record
                     store.insert(0, new Address());
                     rowEditing.startEdit(0, 0);
                 }
-            }, '-', {
+            }, '-',{
                 itemId: 'delete',
-                text: 'Delete',
-                iconCls: 'icon-delete',
+                text: '삭제',
+                iconCls: 'icon-delete',  //위에 css로 경로를 정의 해야 된다.
                 disabled: true,
                 handler: function(){
                     var selection = grid.getView().getSelectionModel().getSelection()[0];

@@ -4,10 +4,6 @@
 
 <mapper namespace="com.cafe24.jaegyu.address.AddressDAO">
 
-	<!-- <insert id="insert" parameterType="org.thinker.sample.member.MemberVO"> 
-		insert into tbl_member (userid,userpw,username,email) values (#{id},#{pw},#{userName},#{email}) 
-		</insert> -->
-
 	<select id="getAll" resultType="com.cafe24.jaegyu.address.AddressVO">
 		select *
 		from address;
@@ -17,5 +13,15 @@
 		update address set address=#{address}, name=#{name},
 		tel=#{tel} where id=#{id}
 	</update>
+
+	<insert id="insert" parameterType="com.cafe24.jaegyu.address.AddressVO">
+		insert into address (name,address,tel) 
+		values (#{name},#{address},#{tel})
+	</insert>
+
+	<delete id="delete" parameterType="com.cafe24.jaegyu.address.AddressVO">
+		delete from address 
+		where id=#{id}
+	</delete>
 
 </mapper>
