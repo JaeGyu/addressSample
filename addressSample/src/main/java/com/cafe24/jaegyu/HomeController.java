@@ -97,6 +97,42 @@ public class HomeController {
 		return map;
 	}
 	
+	@RequestMapping(value="/insert.json", method = RequestMethod.POST,
+			headers = "Accept = application/json",
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Object insertAddress(@RequestBody String json) 
+			throws Exception{
+		
+		Collection<AddressVO> parsedAddresses = this.parseAddressJson(json);
+		
+		addressService.insertAddressInfo(parsedAddresses);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("success", "true");
+		
+		return map;
+	}
+	
+	
+	@RequestMapping(value = "/delete.json", method = RequestMethod.POST,
+			headers = "Accept=application/json",
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Object delAddress(@RequestBody String json)
+			throws Exception {
+		Collection<AddressVO> parsedAddresses = this.parseAddressJson(json);
+		addressService.deleteAddress(parsedAddresses);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+//		if(updateResult == true){
+			map.put("success", "true");
+//		}else{
+//			map.put("success", "false");
+//		}
+
+		return map;
+	}
+	
 	@RequestMapping(value="/address",method = RequestMethod.GET)
 	public String address(){
 		return "address";
