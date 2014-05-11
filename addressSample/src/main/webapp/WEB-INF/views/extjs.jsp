@@ -6,7 +6,9 @@
 <head>
 <meta charset="utf-8" />
 <style type="text/css">
-	.image {width : 130px}
+.image {
+	width: 130px
+}
 </style>
 <link
 	href='http://cdn.sencha.io/ext/gpl/4.2.1/resources/css/ext-all.css'
@@ -56,15 +58,17 @@
 				},
 				writer : {
 					type : "json",
-					writeAllFields : true //모든 필드의 데이터를 전송할때 true로 한다. 디폴트는 true 
+					writeAllFields : true
+				//모든 필드의 데이터를 전송할때 true로 한다. 디폴트는 true 
 				}
 			}
 		});
 
 		var rowEditing = Ext.create("Ext.grid.plugin.RowEditing", {
-			clicksToEdit : 2 // row를 에디트 하기위해 클릭을 몇번하는지 지정 지금은 2번 클릭해야 에디트 기능을 쓸 수 있음 
-			//이 예제에선 삭제를 위해 로우 하나를 클릭해놓고 삭제 버튼을 눌러야 하는데 한번
-			//클릭하변 에디트 기능이 나와서 에디트기능은 더블클릭시 호출되도록 변경함  
+			clicksToEdit : 2
+		// row를 에디트 하기위해 클릭을 몇번하는지 지정 지금은 2번 클릭해야 에디트 기능을 쓸 수 있음 
+		//이 예제에선 삭제를 위해 로우 하나를 클릭해놓고 삭제 버튼을 눌러야 하는데 한번
+		//클릭하변 에디트 기능이 나와서 에디트기능은 더블클릭시 호출되도록 변경함  
 		});
 
 		Ext.create("Ext.grid.Panel", {
@@ -73,16 +77,18 @@
 			width : 600,
 			store : addressStore,
 			plugins : [ rowEditing ],
-			selType : "rowmodel",
+			selType : "rowmodel", // 잘 모르 겠음 
 			columns : [ {
 				header : "이름",
 				dataIndex : "name",
 				editor : {
 					allowBlank : false
+				//공백을 허용하지 않겠다. 
 				}
 			}, {
 				header : "주소",
 				dataIndex : "address",
+				flex : 1,
 				editor : {
 					allowBlank : false
 				}
@@ -94,7 +100,7 @@
 				}
 			}, {
 				header : "삭제",
-				xtype : "actioncolumn",
+				xtype : "actioncolumn", //actioncolumn이라는 별칭을 가진 컴포넌트와 관련이 있다. 
 				items : [ {
 					icon : "deleteButton.png",
 					iconCls : "image", //위 아이콘의 css class를 정의 함 
@@ -107,10 +113,83 @@
 			} ],
 			renderTo : Ext.get("grid")
 		});
+
+		var formPanel = Ext.create("Ext.form.Panel", {
+			layout : "fit",
+			items : [ {
+				xtype : "container",
+				layout : "vbox",
+				items : [ {
+					xtype : "textfield",
+					fieldLabel : "이름",
+					name : "name",
+					labelAlign : "left",
+					cls : "field-margin",
+					allowBlank : false,
+					emptyText : "이름을 입력 하세요"
+				}, {
+					xtype : "textfield",
+					fieldLabel : "주소",
+					name : "address",
+					labelAlign : "left",
+					cls : "field-margin",
+					allowBlank : false,
+					emptyText : "주소를 입력 하세요"
+				}, {
+					xtype : "textfield",
+					fieldLabel : "전화번호",
+					name : "tel",
+					labelAlign : "left",
+					cls : "field-margin",
+					allowBlank : false,
+					emptyText : "전화번호를 입력 하세요"
+				} ]
+			} ],
+			buttons : [ {
+				text : "확인",
+				handler : function() {
+					if (formPanel.getForm().isValid()) {
+						var newAddress = formPanel.getForm().getValues();
+						addressStore.add(newAddress);
+						dialog.hide();
+					}
+				}
+			}, {
+				text : "취소",
+				handler : function() {
+					dialog.hide();
+				}
+			} ]
+		});
+
+		var dialog = Ext.create("Ext.window.Window", {
+			title : "추가",
+			width : 300,
+			height : 250,
+			modal : true,
+			closeAction : "hide",
+			shadow : false,
+			style : "margin: 50px",
+			items : [ formPanel ]
+		});
+
+		Ext.get("btn_insert").on("click", function(e, taget, options) {
+			formPanel.getForm().setValues({
+				name : null,
+				address : null,
+				tel : null
+			});
+			dialog.show();
+		})
+
 	});
 </script>
 </head>
 <body>
+	<h3>Ext JS 그리드 예제</h3>
+	<hr />
 	<div id="grid"></div>
+	<input id="btn_insert" type="button" value="추가" />
+	<hr />
 </body>
 </html>

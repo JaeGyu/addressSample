@@ -42,9 +42,6 @@ public class HomeController {
 	@Resource(name="addressServiceImpl")
 	AddressService addressService;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
