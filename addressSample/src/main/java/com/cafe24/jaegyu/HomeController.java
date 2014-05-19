@@ -17,19 +17,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.cafe24.jaegyu.address.AddressDAO;
 import com.cafe24.jaegyu.address.AddressService;
-import com.cafe24.jaegyu.address.AddressServiceImpl;
 import com.cafe24.jaegyu.address.AddressVO;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 
@@ -94,19 +89,24 @@ public class HomeController {
 		return map;
 	}
 	
-	@RequestMapping(value="/insert.json", method = RequestMethod.POST,
-			headers = "Accept = application/json",
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Object insertAddress(@RequestBody String json) 
-			throws Exception{
-		
+	
+	/*
+	 * 
+	 * headers = "Accept=application/json", 
+	 * produces = { MediaType.APPLICATION_JSON_VALUE })
+	 *	이 부분을 제거해야 문제 없이 처리가 됨   
+	 * */
+	@RequestMapping(value = "/insert.json", method = RequestMethod.POST)
+	public @ResponseBody
+	Object insertAddress(@RequestBody String json) throws Exception {
+
 		Collection<AddressVO> parsedAddresses = this.parseAddressJson(json);
-		
+
 		addressService.insertAddressInfo(parsedAddresses);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("success", "true");
-		
+
 		return map;
 	}
 	

@@ -149,7 +149,9 @@
 				text : "확인",
 				handler : function() {
 					if (formPanel.getForm().isValid()) {
+						//폼에 세팅이 된 데이터들을 가져온다.
 						var newAddress = formPanel.getForm().getValues();
+						//가져온 데이터를 store에 추가 한다. 
 						addressStore.add(newAddress);
 						dialog.hide();
 					}
@@ -161,16 +163,17 @@
 				}
 			} ]
 		});
-
+		
+		//모달 윈도우를 정의 한다.
 		var dialog = Ext.create("Ext.window.Window", {
 			title : "추가",
 			width : 300,
-			height : 250,
+			height : 150,
 			modal : true,
 			closeAction : "hide",
 			shadow : false,
 			style : "margin: 50px",
-			items : [ formPanel ]
+			items : [ formPanel ] //모달 윈도우에 표시할 아이템을 정의 한다. 여기선 위에 정의한 form이다.
 		});
 
 		Ext.get("btn_insert").on("click", function(e, taget, options) {
@@ -181,7 +184,6 @@
 			});
 			dialog.show();
 		})
-
 	});
 </script>
 </head>
