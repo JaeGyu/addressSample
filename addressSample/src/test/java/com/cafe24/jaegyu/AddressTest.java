@@ -18,6 +18,10 @@ import com.cafe24.jaegyu.address.AddressDAO;
 import com.cafe24.jaegyu.address.AddressService;
 import com.cafe24.jaegyu.address.AddressVO;
 
+
+/*
+ * 테스트 다시 만들것 메이븐에서 에러남
+ * */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/**/*-context.xml"})
 public class AddressTest {

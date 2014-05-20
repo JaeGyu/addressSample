@@ -36,6 +36,11 @@ public class HomeController {
 	
 	@Resource(name="addressServiceImpl")
 	AddressService addressService;
+	
+	@RequestMapping(value="/tree", method = RequestMethod.GET)
+	public String tree(){
+		return "treeView";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
