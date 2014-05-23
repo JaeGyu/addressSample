@@ -1,5 +1,4 @@
-{
-	"countries":[{
+[{
 		"text":"United Kingdom",
 		"children":[{
 			"text":"Glasgow",
@@ -15,5 +14,4 @@
 	},{
 		"text":"France",
 		"leaf":true
-	}]
-}
+}]
