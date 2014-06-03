@@ -37,9 +37,14 @@ public class HomeController {
 	@Resource(name="addressServiceImpl")
 	AddressService addressService;
 	
-	@RequestMapping(value="/tree", method = RequestMethod.GET)
-	public String tree(){
+	@RequestMapping(value = "/tree", method = RequestMethod.GET)
+	public String tree() {
 		return "treeView";
+	}
+
+	@RequestMapping(value = "/md", method = RequestMethod.GET)
+	public String masterDetailGrid() {
+		return "masterDetailGridTest";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

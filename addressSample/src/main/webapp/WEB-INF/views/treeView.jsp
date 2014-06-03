@@ -17,8 +17,12 @@
 				url : "data/treeData.json"
 			},
 			root : {
-				text : "countries",
+				text : "data",
 				expanded : true
+			},
+			reader:{
+				type:'json', //URL로 부터 오는 데이터가  json타입니다.
+				root:'data'
 			}
 		});
 

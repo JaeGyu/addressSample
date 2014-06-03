@@ -15,6 +15,6 @@ Ext.define('Address.store.Addresses',{
 			successProperty:'success'
 		}
 	},
-
+	
    autoLoad:true  //url로부터 자동으로 로딩한다.
 });

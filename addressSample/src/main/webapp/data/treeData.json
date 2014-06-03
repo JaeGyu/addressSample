@@ -1,17 +1,1 @@
-[{
-		"text":"United Kingdom",
-		"children":[{
-			"text":"Glasgow",
-			"leaf":true
-		},{
-			"text":"Edinburgh",
-			"leaf":true
-		},{
-			"text":"London",
-			"leaf":true
-		}],
-		"leaf":false
-	},{
-		"text":"France",
-		"leaf":true
-}]
+[{"id":"EvnListController","text":"Evnets","leaf":false,"children":[{"id":"EvnSettingController&musicEvent","text":"MusicEvent","leaf":true,"children":null}]}]
