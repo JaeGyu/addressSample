@@ -43,7 +43,7 @@ Ext.onReady(function(){
 
     var store = Ext.create('Ext.data.Store', {
         autoLoad: true,
-        autoSync: true,
+//         autoSync: true,
         model: 'Address',
         proxy: {
         	type:'ajax',
@@ -132,8 +132,16 @@ Ext.onReady(function(){
                 text: '추가',
                 iconCls: 'icon-add',
                 handler: function(){
+                	rowEditing.cancelEdit();
+                	
+                	var a = Ext.create("Address",{
+                		name:"",
+                		address:"",
+                		tel:""
+                	});
+                	
                     // empty record
-                    store.insert(0, new Address());
+                    store.insert(0, a);
                     rowEditing.startEdit(0, 0);
                 }
             }, '-',{

@@ -151,6 +151,7 @@
 					if (formPanel.getForm().isValid()) {
 						//폼에 세팅이 된 데이터들을 가져온다.
 						var newAddress = formPanel.getForm().getValues();
+						console.log("newAddress :: "+ newAddress);
 						//가져온 데이터를 store에 추가 한다. 
 						addressStore.add(newAddress);
 						dialog.hide();

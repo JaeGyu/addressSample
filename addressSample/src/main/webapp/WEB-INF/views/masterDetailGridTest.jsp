@@ -110,27 +110,54 @@
 					mdPanel.down("address-form").loadRecord(record);
 				}
 			},
+			
+			/**
+			 * 툴바 설정
+			 */
 			dockedItems : [ {
 				xtype : 'toolbar',
 				items : [ {
 					text : '추가',
 					iconCls : 'icon-add',
 					handler : function() {
-						// 		                    store.insert(0, new Address());
-						// 		                    rowEditing.startEdit(0, 0);
-						addressStore.insert(0, new Address({
-							name:"",
-							address:"",
-							tel:""
-						}));
+					addressStore.insert(0, new Address({
+						name:"",
+						address:"",
+						tel:""
+					}));
+
+ 						var grid = mdPanel.down("address-grid");
+// 						var store = grid.getStore();
+						
+// 						var record;
+// 						var modelType = grid.modelType;
+						
+// 						console.log(modelType);
+						
+// 						// 해당 store의 모델 생성
+// 						if (modelType) {
+// 							record = Ext.create(modelType);
+// 						} else {
+// 							var model = {
+// 								extend: 'Ext.data.Model',
+// 								fields: store.model.getFields()
+// 							};
+// 							record = Ext.define('phantomRecord', model);
+// 						}
+						
+// 						store.insert(0, record);
 						
 						
-						var grid = mdPanel.down("address-grid");
-						grid.getSelectionModel().select(0);  //그리드의 첫번째 로우를 선택한다. 
-						
+						grid.getSelectionModel().select(0);  //그리드의 첫번째 로우를 선택한다.
 					}
 				} ]
-			} ]
+			} ],
+			
+			
+			initComponent:function(config){
+				var me = this;
+				me.callParent(arguments);
+			}
 		});
 
 		/*
@@ -174,26 +201,58 @@
 			buttons : [ {
 				text : "작업저장",
 				handler : function() {
-					var form = this.up("form").getForm();
+					var form = this.up("address-form").getForm();
 					
 					var grid = mdPanel.down("address-grid");
 					var recordIndex = form.getRecord().index;
 					
-					console.log("recordIndex :: " + recordIndex);
-					
-					console.log("form.getRecord() :: "+form.getRecord());
+					var store = grid.getStore();
 					
 					var formValues = form.getValues();
 					var record = grid.getStore().getAt(recordIndex);
+					
+					
+					console.log("store length :: "+store.data.length);
+					
+					var values = form.getValues();
+					
+					
+					console.log(form.getRecord());
+					
+					console.log(form.getValues());
+					console.log(form.getRecord().data);
+					
+					var formRecord = form.getRecord();
+					var formRecordData = form.getRecord().data;
+					var formData = form.getValues();
+					
+// 					formRecordData.name = formData.name; 
+// 					formRecordData.address = formData.address; 
+// 					formRecordData.tel = formData.tel;
+					console.log("~~~~~~~~~~~~~~~~~~~~~~");
+					
+					console.log(form.getRecord().data);
+					
+					//store.sync();
+					
+// 					for(var i=0;i<store.data.length;i++){
+// 						console.log((i+1)+" : "+store.data.items[i].data.name);
+// 					}
+					
+					//form.updateRecord(form.getRecord());
+					
+  					formRecord.beginEdit();
+  					formRecord.set(formValues);
+  					console.log("******************88");
+  					console.log(form.getRecord());
+  					
+  					formRecord.endEdit();
 
-					
-					//form.updateRecord(record);
-					
-					
- 					record.beginEdit();
- 					record.set(formValues);
- 					record.endEdit();
-
+				}
+			},{
+				text:"Reset",
+				handler: function(){
+					this.up("address-form").getForm().reset();
 				}
 			} ]
 		});
