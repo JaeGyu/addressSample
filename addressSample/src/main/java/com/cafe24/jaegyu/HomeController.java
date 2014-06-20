@@ -46,6 +46,11 @@ public class HomeController {
 	public String masterDetailGrid() {
 		return "masterDetailGridTest";
 	}
+	
+	@RequestMapping(value="/easyui",method=RequestMethod.GET)
+	public String easyUi(){
+		return "easyui";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -74,6 +79,21 @@ public class HomeController {
 		map.put("success", "true");
 		
 		return map;
+	}
+	
+	@RequestMapping(value = "/list2.json", method = RequestMethod.POST,
+			headers = "Accept=application/json", 
+			produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody
+	Object getListJSON2() throws Exception {
+		logger.info("get json2...........");
+
+//		Map<String, Object> map = new HashMap<String,  Object>();
+//		
+//		map.put("address", addressService.list());
+//		map.put("success", "true");
+		
+		return addressService.list();
 	}
 	
 	/*
