@@ -1,0 +1,10 @@
+{
+	"success": true,
+	"users": [{
+		"fullName": "Joe Bloggs",
+		"userID": 1
+	}, {
+		"fullName": "John Smith",
+		"userID": 2
+	}]
+}

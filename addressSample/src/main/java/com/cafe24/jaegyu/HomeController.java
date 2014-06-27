@@ -37,6 +37,12 @@ public class HomeController {
 	@Resource(name="addressServiceImpl")
 	AddressService addressService;
 	
+	@RequestMapping(value="/comboBox", method=RequestMethod.GET)
+	public String comboBox(){
+		return "comboBox";
+	}
+	
+	
 	@RequestMapping(value = "/tree", method = RequestMethod.GET)
 	public String tree() {
 		return "treeView";

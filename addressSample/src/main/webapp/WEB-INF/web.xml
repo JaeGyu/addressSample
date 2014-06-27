@@ -43,7 +43,7 @@
 		<url-pattern>*.jpg</url-pattern>
 		<url-pattern>*.ico</url-pattern>
 		<url-pattern>*.gif</url-pattern>
-<!-- 		<url-pattern>*.json</url-pattern> -->
+		<url-pattern>*.jsonn</url-pattern>
 	</servlet-mapping>
 
 </web-app>
