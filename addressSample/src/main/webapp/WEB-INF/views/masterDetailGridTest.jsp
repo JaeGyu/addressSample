@@ -23,8 +23,7 @@
 }
 </style>
 <script>
-	Ext
-			.onReady(function() {
+	Ext.onReady(function() {
 
 				var newInstance = false;
 
@@ -263,39 +262,49 @@
 													text : 'Delete',
 													iconCls : 'icon-delete',
 													handler : function() {
-														var form = this.up(
-																"address-form")
-																.getForm();
-														var grid = mdPanel
-																.down("address-grid");
-														var store = grid
-																.getStore();
-														var formValues = form
-																.getValues();
-														var recordIndex = form
-																.getRecord().index;
-														var record = grid
-																.getStore()
-																.getAt(
-																		recordIndex);
+														var form           = this.up("address-form").getForm();
+														var grid             = mdPanel	.down("address-grid");
+														var store           = grid.getStore();
+														var formValues = form.getValues();
+														var recordIndex = form.getRecord().index;
+														var record = grid.getStore().getAt(recordIndex);
 
-														Ext.Msg
-																.confirm(
-																		"Confirm",
-																		"확실히 지우시겠습니까?",
-																		function(
-																				btn) {
+														Ext.Msg.confirm("Confirm",	"확실히 지우시겠습니까?",
+																		function(btn) {
 																			if (btn === "yes") {
-																				console
-																						.log("지운데");
-																				store
-																						.remove(record);
+																				console.log("지운데");
+																				store.remove(record);
 																			} else {
-																				console
-																						.log("안 지운데 ");
+																				console.log("안 지운데 ");
 																			}
-																		});
+													   });
 
+													}
+												},"-",{
+													text:"Popup",
+													handler:function(){
+														//Ext.create("pop").show();
+		
+														Ext.create('Ext.window.Window', {
+															extend:'Ext.window.Window',
+															layout : "border",
+															title : "주소록",
+															width : 600,
+															height : 320,
+															items : [ {
+																region : "north",
+																height : 300,
+																xtype : "address-grid",
+																split : true
+															}, {
+																region : "center",
+																height : 200,
+																xtype : "address-form",
+															} ]
+														}).show();
+														
+														
+														
 													}
 												} ]
 									} ]
@@ -375,6 +384,25 @@
 					} ]
 				});
 
+				Ext.define("popup",{
+					extend:'Ext.window.Window',
+					alias:"widget.pop",
+					layout : "border",
+					title : "주소록",
+					width : 600,
+					height : 520,
+					items : [ {
+						region : "north",
+						height : 300,
+						xtype : "address-grid",
+						split : true
+					}, {
+						region : "center",
+						height : 200,
+						xtype : "address-form",
+					} ]
+				});
+				
 			});
 </script>
 </head>

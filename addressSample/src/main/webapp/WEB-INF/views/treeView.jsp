@@ -14,7 +14,7 @@
 		var store = Ext.create("Ext.data.TreeStore", {
 			proxy : {
 				type : "ajax",
-				url : "data/treeData.json"
+				url : "data/treeData.jsonn"
 			},
 			root : {
 				text : "data",
@@ -33,7 +33,12 @@
 			store : store,
 			rootVisible : false,
 			renderTo : Ext.getBody(),
-			style : "margin: 50px"
+			style : "margin: 50px",
+			listeners:{
+				itemclick : function( RowModel, record, item, index, e, eOpts ){
+					console.log(record.raw.getTemp());
+				}
+			}
 		});
 	});
 </script>

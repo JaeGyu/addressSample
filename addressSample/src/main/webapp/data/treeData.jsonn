@@ -1,0 +1,17 @@
+[{"id":"EvnListController",
+"text":"Evnets",
+"leaf":false,
+"temp":"aaa",
+getTemp : function(){
+	return this.temp;
+},
+"children":[{"id":"EvnSettingController&musicEvent",
+                 "text":"MusicEvent",
+                 "leaf":true,
+                 "temp":"bbb",
+                 getTemp : function(){
+					return this.temp;
+				  },
+                 "children":null
+                 }]
+}]
